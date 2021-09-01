@@ -5,6 +5,11 @@ const app = express();
 const port = 3000;
 const handlebars = require('express-handlebars');
 const route = require('./routes');
+const db = require('./config/db');
+
+//connect to db
+db.connect();
+
 // HTTP logger
 // app.use(morgan('combined'));
 
@@ -27,7 +32,7 @@ app.engine(
     }),
 );
 app.set('view engine', 'hbs');
-app.set('views', path.join(__dirname, 'resources/views'));
+app.set('views', path.join(__dirname, 'resources', 'views'));
 
 //Home, search, contact
 
@@ -37,5 +42,5 @@ route(app);
 
 // 127.0.0.1 => localhost
 app.listen(port, () =>
-    console.log(`Example app listening at http://localhost:${port}`),
+    console.log(` App listening at http://localhost:${port}`),
 );

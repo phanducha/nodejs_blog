@@ -5,7 +5,7 @@ function route(app) {
     // around function
     // Action---> Dispatcher ---> Function handler
 
-    pp.use('/news', newsRouter);
+    app.use('/news', newsRouter);
     app.use('/', siteRouter);
 }
 
