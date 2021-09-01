@@ -3,7 +3,7 @@ const router = express.Router();
 
 const newsController = require('../app/controllers/NewsController');
 
-//Newscontroller.index 
+//Newscontroller.index
 router.use('/:slug', newsController.show);
 router.use('/', newsController.index);
 
