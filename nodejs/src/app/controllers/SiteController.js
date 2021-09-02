@@ -1,18 +1,21 @@
 const Course = require('../models/Course');
-
+const { mutipleMongooseToObject } = require('../../ultil/mongoose');
 class SiteController {
     //[GET] /news
-    index(req, res) {
-        Course.find({}, function(err, courses) {
-            if (!err) {
-                res.json(courses);
-            } else {
-                res.status(400).json({ error: 'Message' })
-            }
-        });
+    index(req, res, next) {
+
+
+        Course.find({})
+            .then(courses => {
+                // courses = courses.map(course => course.toObject())
+                res.render('home', {
+                        courses: mutipleMongooseToObject(courses)
+                    }) // {courses} stand for    { courses : courses} cause the similar name
+            })
+            .catch(next); //  .catch(error => next(error));
     }
 
-    // res.render('home');
+
 
 
     //[GET] /search    biến động
