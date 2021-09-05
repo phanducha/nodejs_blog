@@ -1,6 +1,7 @@
 const path = require('path');
 const express = require('express');
 const morgan = require('morgan');
+const methodOverride = require('method-override');
 const app = express();
 const port = 3000;
 const handlebars = require('express-handlebars');
@@ -20,6 +21,10 @@ app.use(
         extended: true,
     }),
 ); //handle data sent form HTMl
+
+// use methodoveride to change method in HTML
+app.use(methodOverride('_method'));
+
 app.use(express.json()); //handle data sent from code js
 
 // XMLHttprequest,fetch,axios,       Can send data through get and post method

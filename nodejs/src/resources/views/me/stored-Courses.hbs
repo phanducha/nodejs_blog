@@ -6,7 +6,8 @@
             <th scope="col">#</th>
             <th scope="col">Courses name</th>
             <th scope="col">Level</th>
-            <th scope="col">Created Time</th>
+            <th scope="col" colspan="2">Created Time</th>
+           {{!-- <th></th>full bar --}}
             </tr>
         </thead>
         <tbody>
@@ -16,6 +17,10 @@
                 <td>{{this.name}}</td>
                 <td>{{this.level}}</td>
                 <td>{{this.createdAt}}</td>
+                <td>
+                    <a href="/courses/{{this._id}}/edit" class="btn btn-link">Repair</a>
+                    <a href="" class="btn btn-link">Delete</a>
+                </td>
             </tr>
             {{/each}}
         </tbody>
