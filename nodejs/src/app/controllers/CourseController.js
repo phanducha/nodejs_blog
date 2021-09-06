@@ -38,8 +38,14 @@ class CourseController {
         }
         //[PUT] /course/:id
     update(req, res, next) {
-        Course.updateOne({ _id: req.params.id }, req.body)
-            .then(() => res.redirect('/me/stored/courses')) //res.redirect : điều hướng sang path mới
+            Course.updateOne({ _id: req.params.id }, req.body)
+                .then(() => res.redirect('/me/stored/courses')) //res.redirect : điều hướng sang path mới
+                .catch(next);
+        }
+        //[Delete] /course/:id
+    destroy(req, res, next) {
+        Course.deleteOne({ _id: req.params.id })
+            .then(() => res.redirect('back'))
             .catch(next);
     }
 }
