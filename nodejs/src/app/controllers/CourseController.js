@@ -24,7 +24,7 @@ class CourseController {
             formData.image = `https://img.youtube.com/vi/${req.body.videoId}/sddefault.jpg`;
             const course = new Course(formData);
             course.save()
-                .then(() => res.redirect('/'))
+                .then(() => res.redirect('/me/stored/courses'))
                 .catch(error => {});
         }
         //[GET] /course/:id/create
@@ -44,7 +44,19 @@ class CourseController {
         }
         //[Delete] /course/:id
     destroy(req, res, next) {
-        Course.deleteOne({ _id: req.params.id })
+            Course.delete({ _id: req.params.id })
+                .then(() => res.redirect('back'))
+                .catch(next);
+        }
+        //[Delete] /course/:id/force
+    forceDestroy(req, res, next) {
+            Course.deleteOne({ _id: req.params.id })
+                .then(() => res.redirect('back'))
+                .catch(next);
+        }
+        //[PATCH] /course/:id/restore
+    restore(req, res, next) {
+        Course.restore({ _id: req.params.id })
             .then(() => res.redirect('back'))
             .catch(next);
     }
