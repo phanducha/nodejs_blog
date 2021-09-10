@@ -28,6 +28,7 @@ class CourseController {
                 .catch(error => {});
         }
         //[GET] /course/:id/create
+        
     edit(req, res, next) {
             Course.findById(req.params.id)
                 .then(course => res.render('courses/edit', {
